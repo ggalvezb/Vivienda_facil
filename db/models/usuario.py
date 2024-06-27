@@ -4,7 +4,7 @@ from typing import Optional
 #Entidad psat
 class Usuario(BaseModel):
     id: Optional[str]
-    username:str
+    username: Optional[str]
     email:str
     clave:str
     nombre:str
