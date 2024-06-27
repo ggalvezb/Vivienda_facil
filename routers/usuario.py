@@ -29,3 +29,9 @@ async def perfil(id: str):
 @router.put("/", response_model=Usuario,description="Esta funcion busca por el correo")
 async def perfil(usuario:Usuario):
     return fun.edito_registro(Usuario,usuario_schema,usuario,"email",usuario.email,registro_bd)
+
+#Reviso si el usuario existe
+#Agrego un usuario a la BD
+@router.get("/{correo}")
+async def perfil(correo:str):
+    return fun.agrego_registro(Usuario,usuario_schema,usuario,"email",correo,registro_bd)

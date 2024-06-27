@@ -17,7 +17,18 @@ def agrego_registro(Entidad,entidad_schema,dato,campo_de_busqueda,campo_a_buscar
         return Entidad(**new_user)
     except:
         return {"Error"}
+
+#Agrego un registro a la BD
+def busco_usuario(Entidad,entidad_schema,dato,campo_de_busqueda,campo_a_buscar,base_datos):
+    try:
+        if type(search_perfil(Entidad,entidad_schema,campo_de_busqueda,campo_a_buscar,base_datos)) == Entidad:
+            return {"El usuario ya existe"}
+        else:
+            return {"El usuario no existe"}
+    except:
+        return {"El usuario no existe"}
     
+
 #Elimino un registro de la BD
 def elimino_registro(base_datos,id):
     found=base_datos.find_one_and_delete({"_id": id})
