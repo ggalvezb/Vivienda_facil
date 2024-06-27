@@ -17,7 +17,7 @@ async def usuario():
 
 #Agrego un usuario a la BD
 @router.post("/")
-async def perfil(usuario:Usuario):
+async def usuario(usuario:Usuario):
     return fun.agrego_registro(Usuario,usuario_schema,usuario,"email",usuario.email,registro_bd)
 
 #Elimino un usuario de la BD
@@ -30,8 +30,12 @@ async def perfil(id: str):
 async def perfil(usuario:Usuario):
     return fun.edito_registro(Usuario,usuario_schema,usuario,"email",usuario.email,registro_bd)
 
-#Reviso si el usuario existe
-#Agrego un usuario a la BD
+#Retorno la informacion de un usuario
 @router.get("/{correo}")
+async def usuario(correo:str):
+    return fun.search_perfil(Usuario,usuario_schema,"email",correo,registro_bd)
+
+#Reviso si el usuario existe
+@router.get("/check/{correo}")
 async def perfil(correo:str):
     return fun.agrego_registro(Usuario,usuario_schema,usuario,"email",correo,registro_bd)
