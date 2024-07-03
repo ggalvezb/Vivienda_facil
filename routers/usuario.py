@@ -30,10 +30,15 @@ async def perfil(id: str):
 async def perfil(usuario:Usuario):
     return fun.edito_registro(Usuario,usuario_schema,usuario,"email",usuario.email,registro_bd)
 
-#Retorno la informacion de un usuario
+#Retorno la informacion de un usuario por su correo
 @router.get("/{correo}")
 async def usuario(correo:str):
     return fun.search_perfil(Usuario,usuario_schema,"email",correo,registro_bd)
+
+#Retorno la informacion de un usuario por su id de BD
+@router.get("/id/{id}")
+async def usuario(id:str):
+    return fun.search_perfil(Usuario,usuario_schema,"_id",ObjectId(id),registro_bd)
 
 #Reviso si el usuario existe
 @router.get("/check/{correo}")
